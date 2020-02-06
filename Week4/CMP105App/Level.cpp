@@ -12,7 +12,7 @@ Level::Level(sf::RenderWindow* hwnd, Input* in)
 	playerObject.setSize(sf::Vector2f(100, 100));
 	playerObject.setPosition(100, 100);
 	playerObject.setVelocity(50, 50);
-}
+	}
 
 Level::~Level()
 {
