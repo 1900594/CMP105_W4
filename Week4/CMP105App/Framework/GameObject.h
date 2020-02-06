@@ -41,6 +41,8 @@ public:
 protected:
 	// Sprite properties
 	sf::Vector2f velocity;
+	
+	
 	bool alive;
 
 	// Collision vars
