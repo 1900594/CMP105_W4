@@ -1,9 +1,13 @@
 #pragma once
 #include"Framework/GameObject.h"
-class Enemy : public GameObject
+#include"Framework/Input.h"
+class Enemy : public GameObject, private Input
 {
 public:
 	Enemy();
 	~Enemy();
+
+	
+
 };
 

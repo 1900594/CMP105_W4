@@ -43,6 +43,7 @@ protected:
 	sf::Vector2f velocity;
 	
 	
+	
 	bool alive;
 
 	// Collision vars

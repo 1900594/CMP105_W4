@@ -10,8 +10,15 @@ Level::Level(sf::RenderWindow* hwnd, Input* in)
 	playerObject.setInput(input);
 	playerObject.setTexture(&texture);
 	playerObject.setSize(sf::Vector2f(100, 100));
-	playerObject.setPosition(100, 100);
+	playerObject.setPosition(200,200);
 	playerObject.setVelocity(50, 50);
+	
+	texture2.loadFromFile("gfx/goomba.png");
+	enemyObject.setTexture(&texture2);
+	enemyObject.setSize(sf::Vector2f(100, 100));
+	enemyObject.setPosition(600, 200);
+	enemyObject.setVelocity(50, 50);
+
 	}
 
 Level::~Level()
@@ -28,6 +35,7 @@ void Level::handleInput(float dt)
 		window->close();
 	}
 	playerObject.handleInput(dt);
+	
 }
 
 // Update game objects
@@ -42,8 +50,9 @@ void Level::render()
 	beginDraw();
 
 	window->draw(playerObject);
+	window->draw(enemyObject);
 
-	endDraw();
+		endDraw();
 }
 
 // clear back buffer
