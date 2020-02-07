@@ -19,6 +19,8 @@ Level::Level(sf::RenderWindow* hwnd, Input* in)
 	enemyObject.setPosition(600, 200);
 	enemyObject.setVelocity(50, 50);
 
+	
+
 	}
 
 Level::~Level()
@@ -35,13 +37,14 @@ void Level::handleInput(float dt)
 		window->close();
 	}
 	playerObject.handleInput(dt);
-	
+	enemyObject.moveEnemy(dt);
 }
 
 // Update game objects
 void Level::update(float dt)
 {
-	
+	std::cout << window->getSize().x << "\n";
+	std::cout << enemyObject.getPosition().x << "\n";
 }
 
 // Render level
