@@ -12,6 +12,8 @@ public:
 	Level(sf::RenderWindow* hwnd, Input* in);
 	~Level();
 
+	sf::Vector2u windowSize;
+
 	void handleInput(float dt);
 	void update(float dt);
 	void render();
@@ -29,6 +31,9 @@ private:
 	GameObject testSprite;
 	sf::Texture texture;
 	sf::Texture texture2;
-	Player playerObject;
-	Enemy enemyObject;
+	sf::Texture texture3;
+	GameObject* playerObject;
+	GameObject* enemyObject;
+	GameObject* enemyObject2;
+	
 };

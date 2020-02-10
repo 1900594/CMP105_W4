@@ -4,20 +4,30 @@ Level::Level(sf::RenderWindow* hwnd, Input* in)
 {
 	window = hwnd;
 	input = in;
-
+	enemyObject = new Enemy(&windowSize);
+	enemyObject2 = new Enemy(&windowSize);
+	playerObject = new Player(&windowSize);
 	// initialise game objects
 	texture.loadFromFile("gfx/Mushroom.png");
-	playerObject.setInput(input);
-	playerObject.setTexture(&texture);
-	playerObject.setSize(sf::Vector2f(100, 100));
-	playerObject.setPosition(200,200);
-	playerObject.setVelocity(50, 50);
+	playerObject->setInput(input);
+	playerObject->setTexture(&texture);
+	playerObject->setSize(sf::Vector2f(100, 100));
+	playerObject->setPosition(200,200);
+	playerObject->setVelocity(50, 50);
 	
 	texture2.loadFromFile("gfx/goomba.png");
-	enemyObject.setTexture(&texture2);
-	enemyObject.setSize(sf::Vector2f(100, 100));
-	enemyObject.setPosition(600, 200);
-	enemyObject.setVelocity(50, 50);
+	enemyObject->setTexture(&texture2);
+	enemyObject->setSize(sf::Vector2f(100, 100));
+	enemyObject->setPosition(600, 200);
+	enemyObject->setVelocity(80, 80);
+
+	texture3.loadFromFile("gfx/goomba.png");
+	enemyObject2->setTexture(&texture3);
+	enemyObject2->setSize(sf::Vector2f(100, 100));
+	enemyObject2->setPosition(100, 400);
+	enemyObject2->setVelocity(100, 100);
+
+
 
 	
 
@@ -36,15 +46,17 @@ void Level::handleInput(float dt)
 	{
 		window->close();
 	}
-	playerObject.handleInput(dt);
-	enemyObject.moveEnemy(dt);
+	playerObject->handleInput(dt);
+	enemyObject->update(dt);
+	enemyObject2->update(dt);
 }
 
 // Update game objects
 void Level::update(float dt)
 {
 	std::cout << window->getSize().x << "\n";
-	std::cout << enemyObject.getPosition().x << "\n";
+	std::cout << enemyObject->getPosition().x << "\n";
+	windowSize = window->getSize();
 }
 
 // Render level
@@ -52,8 +64,9 @@ void Level::render()
 {
 	beginDraw();
 
-	window->draw(playerObject);
-	window->draw(enemyObject);
+	window->draw(*playerObject);
+	window->draw(*enemyObject);
+	window->draw(*enemyObject2);
 
 		endDraw();
 }

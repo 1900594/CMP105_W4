@@ -5,11 +5,12 @@
 
 class Player : public GameObject, private Input {
 public:
-	Player();
+	Player(sf::Vector2u* x);
 	~Player();
 
 
-	void handleInput(float dt);
-
+	void handleInput(float dt) override;
+	void update(float dt) override;
+	sf::Vector2u* windowSize;
 };
 
