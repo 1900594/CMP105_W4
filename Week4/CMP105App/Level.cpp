@@ -7,25 +7,41 @@ Level::Level(sf::RenderWindow* hwnd, Input* in)
 	enemyObject = new Enemy(&windowSize);
 	enemyObject2 = new Enemy(&windowSize);
 	playerObject = new Player(&windowSize);
+	cursorObject = new Cursor;
+	gameBackground = new Background;
+
+
 	// initialise game objects
 	texture.loadFromFile("gfx/Mushroom.png");
 	playerObject->setInput(input);
 	playerObject->setTexture(&texture);
 	playerObject->setSize(sf::Vector2f(100, 100));
 	playerObject->setPosition(200,200);
-	playerObject->setVelocity(50, 50);
+	playerObject->setVelocity(10, 10);
 	
-	texture2.loadFromFile("gfx/goomba.png");
+	texture2.loadFromFile("gfx/AsianLady.png");
 	enemyObject->setTexture(&texture2);
 	enemyObject->setSize(sf::Vector2f(100, 100));
 	enemyObject->setPosition(600, 200);
 	enemyObject->setVelocity(80, 80);
 
-	texture3.loadFromFile("gfx/goomba.png");
+	texture3.loadFromFile("gfx/AsianLady.png");
 	enemyObject2->setTexture(&texture3);
 	enemyObject2->setSize(sf::Vector2f(100, 100));
 	enemyObject2->setPosition(100, 400);
 	enemyObject2->setVelocity(100, 100);
+
+	texture4.loadFromFile("gfx/icon.png");
+	cursorObject->setTexture(&texture4);
+	cursorObject->setSize(sf::Vector2f(100, 100));
+	cursorObject->setPosition(100, 400);
+	cursorObject->setInput(input);
+
+	background.loadFromFile("gfx/Level1_1.png");
+	gameBackground->setTexture(&background);
+
+
+
 
 
 
@@ -47,8 +63,7 @@ void Level::handleInput(float dt)
 		window->close();
 	}
 	playerObject->handleInput(dt);
-	enemyObject->update(dt);
-	enemyObject2->update(dt);
+
 }
 
 // Update game objects
@@ -57,6 +72,9 @@ void Level::update(float dt)
 	std::cout << window->getSize().x << "\n";
 	std::cout << enemyObject->getPosition().x << "\n";
 	windowSize = window->getSize();
+	enemyObject->update(dt);
+	enemyObject2->update(dt);
+	cursorObject->update(dt);
 }
 
 // Render level
@@ -67,6 +85,7 @@ void Level::render()
 	window->draw(*playerObject);
 	window->draw(*enemyObject);
 	window->draw(*enemyObject2);
+	window->draw(*cursorObject);
 
 		endDraw();
 }
