@@ -39,6 +39,7 @@ Level::Level(sf::RenderWindow* hwnd, Input* in)
 
 	background.loadFromFile("gfx/Level1_1.png");
 	gameBackground->setTexture(&background);
+	gameBackground->setSize(sf::Vector2f(11038, 675));
 
 
 
@@ -81,7 +82,7 @@ void Level::update(float dt)
 void Level::render()
 {
 	beginDraw();
-
+	window->draw(*gameBackground);
 	window->draw(*playerObject);
 	window->draw(*enemyObject);
 	window->draw(*enemyObject2);

@@ -8,6 +8,7 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "Cursor.h"
+#include "Background.h"
 class Level{
 public:
 	Level(sf::RenderWindow* hwnd, Input* in);
@@ -34,9 +35,11 @@ private:
 	sf::Texture texture2;
 	sf::Texture texture3;
 	sf::Texture texture4;
+	sf::Texture background;
 	GameObject* playerObject;
 	GameObject* enemyObject;
 	GameObject* enemyObject2;
 	GameObject* cursorObject;
+	GameObject* gameBackground;
 	
 };
