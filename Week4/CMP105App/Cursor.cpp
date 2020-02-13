@@ -1,7 +1,7 @@
 #include "Cursor.h"
-Cursor::Cursor()
+Cursor::Cursor(sf::Vector2f* offset)
 {
-
+	cursorOffset = offset;
 }
 Cursor::~Cursor()
 {
@@ -10,6 +10,10 @@ Cursor::~Cursor()
 
 void Cursor::update(float dt)
 {
-	setPosition(input->getMouseX(), input->getMouseY());
+
+	
+	setPosition(input->getMouseX() + cursorOffset->x , input->getMouseY() + cursorOffset->y);
+	
+	
 
 }

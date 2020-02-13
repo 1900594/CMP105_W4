@@ -4,9 +4,10 @@
 class Cursor : public GameObject
 {
 public: 
-	Cursor();
+	Cursor(sf::Vector2f* offset);
 	~Cursor();
 
 	void update(float dt) override;
+	sf::Vector2f* cursorOffset;
 };
 

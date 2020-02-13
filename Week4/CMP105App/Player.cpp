@@ -18,23 +18,23 @@ void Player::handleInput(float dt)
 	if (input->isKeyDown(sf::Keyboard::Right))
 	{
 		
-		move(5,0 * dt);
+		move(500 * dt,0 );
 
 	}
 	if (input->isKeyDown(sf::Keyboard::Left))
 	{
 
-		move(-5, 0 * dt);
+		move(-500 * dt, 0);
 	}
 
 	if (input->isKeyDown(sf::Keyboard::Up))
 	{
-		move(0,-150 * dt);
+		move(0,-500 * dt);
 	}
 
 	if (input->isKeyDown(sf::Keyboard::Down))
 	{
-		move(0,150 * dt);
+		move(0,500 * dt);
 	}
 		
 

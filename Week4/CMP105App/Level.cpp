@@ -1,5 +1,6 @@
 #include "Level.h"
 
+
 Level::Level(sf::RenderWindow* hwnd, Input* in)
 {
 	window = hwnd;
@@ -7,9 +8,11 @@ Level::Level(sf::RenderWindow* hwnd, Input* in)
 	enemyObject = new Enemy(&windowSize);
 	enemyObject2 = new Enemy(&windowSize);
 	playerObject = new Player(&windowSize);
-	cursorObject = new Cursor;
+	cursorObject = new Cursor(&cursorOffset);
 	gameBackground = new Background;
 
+	rightCentre = sf::Vector2f(moveView.getCenter().x + (window->getSize().x * 0.5), (moveView.getCenter().y + (window->getSize().y * 0.5)));
+	leftCentre = sf::Vector2f(moveView.getCenter().x - (window->getSize().x * 0.5), (moveView.getCenter().y - (window->getSize().y * 0.5)));
 
 	// initialise game objects
 	texture.loadFromFile("gfx/Mushroom.png");
@@ -65,11 +68,35 @@ void Level::handleInput(float dt)
 	}
 	playerObject->handleInput(dt);
 
+	if (input->isKeyDown(sf::Keyboard::D) && rightCentre.x < background.getSize().x)
+	{
+		input->setKeyUp(sf::Keyboard::D);
+		moveView = window->getView();
+		moveView.move(25000 *dt,0);
+		window->setView(moveView);
+	}
+
+	if (input->isKeyDown(sf::Keyboard::A) && leftCentre.x > 0)
+	{
+		input->setKeyUp(sf::Keyboard::A);
+		moveView = window->getView();
+		moveView.move(-25000 * dt, 0);
+		window->setView(moveView);
+	}
 }
 
 // Update game objects
 void Level::update(float dt)
 {
+
+
+
+	cursorOffset = sf::Vector2f(moveView.getCenter().x - (window->getSize().x * 0.5),(moveView.getCenter().y - (window->getSize().y * 0.5)));
+
+	rightCentre = sf::Vector2f(moveView.getCenter().x + (window->getSize().x * 0.5), (moveView.getCenter().y + (window->getSize().y * 0.5)));
+	leftCentre = sf::Vector2f(moveView.getCenter().x - (window->getSize().x * 0.5), (moveView.getCenter().y - (window->getSize().y * 0.5)));
+
+
 	std::cout << window->getSize().x << "\n";
 	std::cout << enemyObject->getPosition().x << "\n";
 	windowSize = window->getSize();

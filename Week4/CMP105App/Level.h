@@ -36,10 +36,13 @@ private:
 	sf::Texture texture3;
 	sf::Texture texture4;
 	sf::Texture background;
+	sf::View moveView;
 	GameObject* playerObject;
 	GameObject* enemyObject;
 	GameObject* enemyObject2;
 	GameObject* cursorObject;
 	GameObject* gameBackground;
-	
+	sf::Vector2f cursorOffset;
+	sf::Vector2f rightCentre;
+	sf::Vector2f leftCentre;
 };
